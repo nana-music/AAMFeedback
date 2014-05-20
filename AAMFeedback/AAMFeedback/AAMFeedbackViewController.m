@@ -256,6 +256,11 @@ static BOOL _alwaysUseMainBundle = NO;
                     cell.detailTextLabel.text = [self _appVersion];
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     break;
+                case 4: // added by naokits
+                    cell.textLabel.text = @"User ID";
+                    cell.detailTextLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"userID"];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    break;
                 default:
                     break;
             }
@@ -382,16 +387,32 @@ static BOOL _alwaysUseMainBundle = NO;
     return [NSString stringWithFormat:@"%@: %@", [self _appName], [self _selectedTopicToSend]];
 }
 
-- (NSString *)_feedbackBody {
-    NSString *body = [NSString stringWithFormat:@"%@\n\n\nDevice:\n%@\n\niOS:\n%@\n\nApp:\n%@ %@",
-                                                _descriptionTextView.text,
-                                                [self _platformString],
-                                                [UIDevice currentDevice].systemVersion,
-                                                [self _appName],
-                                                [self _appVersion]];
+// comment out by naokits
+//- (NSString *)_feedbackBody {
+//    NSString *body = [NSString stringWithFormat:@"%@\n\n\nDevice:\n%@\n\niOS:\n%@\n\nApp:\n%@ %@",
+//                                                _descriptionTextView.text,
+//                                                [self _platformString],
+//                                                [UIDevice currentDevice].systemVersion,
+//                                                [self _appName],
+//                                                [self _appVersion]];
+//
+//    return body;
+//}
 
+// modified by naokits
+- (NSString*)_feedbackBody
+{
+    NSString *body = [NSString stringWithFormat:@"%@\n\n\nDevice:\n%@\n\niOS:\n%@\n\nApp:\n%@ %@\n\nUser ID:\n%@",
+                      _descriptionTextView.text,
+                      [self _platformString],
+                      [UIDevice currentDevice].systemVersion,
+                      [self _appName],
+                      [self _appVersion],
+                      [[NSUserDefaults standardUserDefaults] stringForKey:@"userID"], nil];
+    
     return body;
 }
+
 
 - (NSString *)_selectedTopic {
     return (self.topics)[(NSUInteger)_selectedTopicsIndex];
@@ -405,8 +426,16 @@ static BOOL _alwaysUseMainBundle = NO;
     return [[NSBundle mainBundle] infoDictionary][@"CFBundleDisplayName"];
 }
 
+// comment out by naokits
+//- (NSString *)_appVersion {
+//    return [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
+//}
+
+// modified by naokits
 - (NSString *)_appVersion {
-    return [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
+    NSString *releaseVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleShortVersionString"];
+    NSString *developVersion = [[NSBundle mainBundle] infoDictionary][@"CFBundleVersion"];
+    return [NSString stringWithFormat:@"%@ (%@)", releaseVersion, developVersion];
 }
 
 
