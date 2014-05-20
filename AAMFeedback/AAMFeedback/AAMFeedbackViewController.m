@@ -158,7 +158,7 @@ static BOOL _alwaysUseMainBundle = NO;
     if (section == 0) {
         return 2;
     }
-    return 4;
+    return 5;
 }
 
 - (CGFloat)tableView:(UITableView *) tableView heightForRowAtIndexPath:(NSIndexPath *) indexPath {
