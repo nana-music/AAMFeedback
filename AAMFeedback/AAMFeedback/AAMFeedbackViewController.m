@@ -258,7 +258,7 @@ static BOOL _alwaysUseMainBundle = NO;
                     break;
                 case 4: // added by naokits
                     cell.textLabel.text = @"User ID";
-                    cell.detailTextLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"userID"];
+                    cell.detailTextLabel.text = self.userID;
                     cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     break;
                 default:
@@ -408,7 +408,7 @@ static BOOL _alwaysUseMainBundle = NO;
                       [UIDevice currentDevice].systemVersion,
                       [self _appName],
                       [self _appVersion],
-                      [[NSUserDefaults standardUserDefaults] stringForKey:@"userID"], nil];
+                      self.userID, nil];
     
     return body;
 }

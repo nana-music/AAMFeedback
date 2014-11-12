@@ -27,6 +27,8 @@
 @property (strong, nonatomic) UIImage *backgroundImage;
 @property (assign, nonatomic) NSInteger selectedTopicsIndex;
 
+@property (copy, nonatomic) NSString *userID;
+
 - (instancetype)initWithTopics:(NSArray*)theTopics;
 
 + (BOOL)isAvailable;
