@@ -200,19 +200,22 @@ static BOOL _alwaysUseMainBundle = NO;
 
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 _descriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 0, 300,
-                    88)];
+                                                                                    176)];
                 _descriptionTextView.backgroundColor = [UIColor clearColor];
                 _descriptionTextView.font = [UIFont systemFontOfSize:16];
                 _descriptionTextView.delegate = self;
                 _descriptionTextView.scrollEnabled = NO;
                 _descriptionTextView.text = self.descriptionText;
                 [cell.contentView addSubview:_descriptionTextView];
-
-                _descriptionPlaceHolder = [[UITextField alloc] initWithFrame:CGRectMake(16, 8, 300,
-                    20)];
+                
+                _descriptionPlaceHolder = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, 300,
+                                                                                    176)];
                 _descriptionPlaceHolder.font = [UIFont systemFontOfSize:16];
-                _descriptionPlaceHolder.placeholder = NSLocalizedStringFromTableInBundle(@"AAMFeedbackDescriptionPlaceholder", @"AAMLocalizable", [AAMFeedbackViewController bundle], nil);
+                _descriptionPlaceHolder.textColor = [UIColor grayColor];
+                _descriptionPlaceHolder.text = NSLocalizedStringFromTableInBundle(@"AAMFeedbackDescriptionPlaceholder", @"AAMLocalizable", [AAMFeedbackViewController bundle], nil);
                 _descriptionPlaceHolder.userInteractionEnabled = NO;
+                _descriptionPlaceHolder.numberOfLines = 0;
+                [_descriptionPlaceHolder sizeToFit];
                 [cell.contentView addSubview:_descriptionPlaceHolder];
 
                 [self _updatePlaceholder];

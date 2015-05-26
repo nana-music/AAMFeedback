@@ -13,7 +13,7 @@
 @interface AAMFeedbackViewController : UITableViewController <UITextViewDelegate, MFMailComposeViewControllerDelegate>
 {
     UITextView  *_descriptionTextView;
-    UITextField *_descriptionPlaceHolder;
+    UILabel *_descriptionPlaceHolder;
     BOOL _isFeedbackSent;
 }
 
